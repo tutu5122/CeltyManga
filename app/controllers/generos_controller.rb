@@ -1,6 +1,6 @@
 class GenerosController < ApplicationController
   before_action :set_genero, only: %i[ show edit update destroy ]
-
+  
   # GET /generos or /generos.json
   def index
     @generos = Genero.all

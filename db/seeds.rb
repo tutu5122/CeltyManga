@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#Genero.create(nombre: 'terror')
+Genero.create(nombre: 'comedia')
+Genero.create(nombre: 'romance')
+Genero.create(nombre: 'accion')
+
+
+40.times do
+    producto = Producto.create(titulo: 'Hola', total_stock: (1..25).to_a.sample, descripcion: 'Hola' , genero_id: (1..4).to_a.sample )
+end
