@@ -1,7 +1,7 @@
 class ProductosController < ApplicationController
   before_action :set_producto, only: %i[ show edit update destroy ]
+  before_action :set_generos, only: %i[ new create ]
   
-
   # GET /productos or /productos.json
   def index
     #@productos = Producto.all
@@ -63,6 +63,10 @@ class ProductosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_producto
       @producto = Producto.find(params[:id])
+    end
+
+    def set_generos
+      @generos = Genero.pluck(:nombre, :id)
     end
 
     # Only allow a list of trusted parameters through.

@@ -26,6 +26,11 @@
     <%= form.text_field :descripcion %>
   </div>
 
+   <div class="field">
+    <%= form.label :genero_id %>
+    <%= form.select :genero_id, @generos %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
