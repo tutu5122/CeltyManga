@@ -8,6 +8,7 @@
       <th>Titulo</th>
       <th>Stock</th>
       <th>Descripcion</th>
+      <th>Precio</th>
       <th>Genero</th>
       <th colspan="3"></th>
     </tr>
@@ -19,6 +20,7 @@
         <td><%= producto.titulo %></td>
         <td><%= producto.total_stock %></td>
         <td><%= producto.descripcion %></td>
+        <td><%= producto.precio %></td>
         <td><%= producto.genero_id %></td>
         <td><%= link_to 'Show', producto %></td>
         <td><%= link_to 'Edit', edit_producto_path(producto) %></td>
@@ -30,10 +32,36 @@
   </tbody>
 </table>
 
+<div class="row ">
+  <div class="col-md-8 offset-2 ">
+    <div class="container">
+    <h1 class="text-center">Productos</h1>
+      <div class="row">
+        <% @productos.each do |producto| %>
+          <div class="col-md-3 mb-4">
+            <div class="card">
+              <img class="card-img-top" src="https://pm1.narvii.com/6758/0deb93f0209b8d4e8431cfa3ec2cf53af5cb1e3av2_hq.jpg" alt="<%= producto.titulo %>"/>
+              <div class="card-block">
+                <h5 class="card-title"><%= producto.titulo %></h5>
+                <div class="card-text"> 
+                  <div><%= producto.descripcion %></div>
+                  <div>Genero <%= producto.genero_id %></div>
+                  <div class="badge text-white bg-success">Stock <%= producto.total_stock %></div>                  
+                  <div >Precio $<%= producto.precio %></div>
+                </div>                
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br>
 <%= link_to_prev_page  @productos, 'Página Anterior' %>
 <%= link_to_next_page  @productos, 'Siguiente página' %>
-
 <br>
 
-<%= link_to 'New Producto', new_producto_path %>
+<br>
+<%= link_to 'Nuevo Producto', new_producto_path %>
