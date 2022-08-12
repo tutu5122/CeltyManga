@@ -1,6 +1,6 @@
 class ProductosController < ApplicationController
   before_action :set_producto, only: %i[ show edit update destroy ]
-  before_action :set_generos, only: %i[ new create ]
+  before_action :set_generos, only: %i[ new create edit]
   
   # GET /productos or /productos.json
   def index
@@ -71,6 +71,6 @@ class ProductosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def producto_params
-      params.require(:producto).permit(:titulo, :total_stock, :descripcion, :genero_id, :buscar)
+      params.require(:producto).permit(:titulo, :total_stock, :descripcion, :precio, :url, :genero_id)
     end
 end

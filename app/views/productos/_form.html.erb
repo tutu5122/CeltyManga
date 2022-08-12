@@ -31,6 +31,12 @@
     <%= form.text_field :precio %>
   </div>
 
+  
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.select :url , ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg']%>
+  </div>
+
    <div class="field">
     <%= form.label :genero_id %>
     <%= form.select :genero_id, @generos %>

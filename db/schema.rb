@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_08_11_053739) do
     t.integer "total_stock"
     t.string "descripcion"
     t.integer "precio"
+    t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "genero_id", null: false
