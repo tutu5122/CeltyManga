@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Productos</h1>
-
+<br>
 <table>
   <thead>
     <tr>
@@ -61,9 +61,9 @@
 </div>
 
 <br>
-<%= link_to_prev_page  @productos, 'Página Anterior' %>
-<%= link_to_next_page  @productos, 'Siguiente página' %>
+<%= link_to_prev_page  @productos, 'Página Anterior', class: 'text-info' %>
+<%= link_to_next_page  @productos, 'Siguiente página', class: 'text-info' %>
 <br>
 
 <br>
-<%= link_to 'Nuevo Producto', new_producto_path %>
+<%= link_to 'Nuevo Producto', new_producto_path, class: 'text-info' %>

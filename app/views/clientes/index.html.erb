@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Clientes</h1>
+<br>
+
+<table class="table table-bordered text-info col-sm-2 col-md-6">
+  <thead>
+    <tr>
+      <th >#</th>
+      <th >Rut</th>
+      <th >Nombre</th>
+      <th >Apellido</th>
+      <th >Email</th>
+      <th >Dirección</th>
+      <th >Show</th>
+      <th >Edit</th>
+      <th >Destroy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <% @clientes.each do |cliente| %>
+      <tr>
+        <th><%= cliente.id %></th>
+        <td><%= cliente.rut %></td>
+        <td><%= cliente.nombre %></td>
+        <td><%= cliente.apellido %></td>
+        <td><%= cliente.email %></td>
+        <td><%= cliente.direccion %></td>
+        <td><%= link_to 'Show', cliente, class: 'text-info' %></td>
+        <td><%= link_to 'Edit', edit_cliente_path(cliente), class: 'text-info' %></td>
+        <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-info' %></td>
+      </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Cliente', new_cliente_path, class: 'text-info' %>

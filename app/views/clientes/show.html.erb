@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<br>
+<table class="table table-bordered  text-info col-md-5">
+    <tr>
+      <th class="col-sm-2">Rut</td>
+      <td> <%= @cliente.rut %></td>
+    </tr>
+    <tr>
+      <th>Nombre</th>
+      <td> <%= @cliente.nombre %></td>
+    </tr>
+    <tr>
+      <th>Apellido</th>
+      <td> <%= @cliente.apellido %></td>
+    </tr>
+    <tr>
+      <th>Email</td>
+      <td> <%= @cliente.email %></td>
+    </tr>
+    <tr>
+      <th>Dirección</td>
+      <td> <%= @cliente.direccion %></td>
+    </tr>
+</table>
+<br>
+
+<%= link_to 'Edit', edit_cliente_path(@cliente), class: 'text-info' %> |
+<%= link_to 'Back', clientes_path, class: 'text-info' %>

@@ -1,36 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Genero:</strong>
-  <%= @producto.genero_id %>
-</p>
-
-<p>
-  <strong>Titulo:</strong>
-  <%= @producto.titulo %>
-</p>
-
-<p>
-  <strong>Stock:</strong>
-  <%= @producto.total_stock %>
-</p>
-
-<p>
-  <strong>Descripcion:</strong>
-  <%= @producto.descripcion %>
-</p>
-
-<p>
-  <strong>Precio:</strong>
-  <%= @producto.precio %>
-</p>
-
-<p>
-  <strong>Imagen:</strong>
-  <br>
-  <%= image_tag @producto.url , class:'img-thumbnail w-25' %>
-</p>
+<br>
+<table class="table table-bordered  text-info col-md-5">
+    <tr>
+      <th class="col-sm-2">Genero</td>
+      <td> <%= @producto.genero_id %></td>
+    </tr>
+    <tr>
+      <th>Titulo</th>
+      <td> <%= @producto.titulo %></td>
+    </tr>
+    <tr>
+      <th>Stock</th>
+      <td> <%= @producto.total_stock %></td>
+    </tr>
+    <tr>
+      <th>Descripción</td>
+      <td> <%= @producto.descripcion %></td>
+    </tr>
+    <tr>
+      <th>Precio</td>
+      <td> <%= @producto.precio %></td>
+    </tr>
+    <tr>
+      <th>Imagen</td>
+      <td> <%= image_tag @producto.url , class:'img-thumbnail w-25' %></td>
+    </tr>
+</table>
+<br>
 
 
-<%= link_to 'Edit', edit_producto_path(@producto) %> |
-<%= link_to 'Back', productos_path %>
+<%= link_to 'Edit', edit_producto_path(@producto), class: 'text-info' %> |
+<%= link_to 'Back', productos_path, class: 'text-info' %>

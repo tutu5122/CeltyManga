@@ -13,36 +13,36 @@
 
   <div class="field">
     <%= form.label :titulo %>
-    <%= form.text_field :titulo %>
+    <%= form.text_field :titulo, class:'form-control col-md-2' %>
   </div>
 
   <div class="field">
     <%= form.label :total_stock , 'Stock'%>
-    <%= form.number_field :total_stock %>
+    <%= form.number_field :total_stock, class:'form-control col-md-2' %>
   </div>
 
   <div class="field">
     <%= form.label :descripcion %>
-    <%= form.text_field :descripcion %>
+    <%= form.text_field :descripcion, class:'form-control col-md-2' %>
   </div>
 
   <div class="field">
     <%= form.label :precio %>
-    <%= form.text_field :precio %>
+    <%= form.text_field :precio, class:'form-control col-md-2' %>
   </div>
 
   
   <div class="field">
     <%= form.label :url %>
-    <%= form.select :url , ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg']%>
+    <%= form.select(:url, ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'], {}, { class: 'col-sm-2 custom-select' })%>
   </div>
 
    <div class="field">
     <%= form.label :genero_id %>
-    <%= form.select :genero_id, @generos %>
+    <%= form.select(:genero_id, @generos, {}, { class: 'col-sm-2 custom-select'}) %>   
   </div>
-
+  <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Crear Producto', class:'col-sm-2 btn btn-outline-info'%>
   </div>
 <% end %>
