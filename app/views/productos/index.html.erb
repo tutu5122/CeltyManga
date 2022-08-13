@@ -23,7 +23,7 @@
         <td><%= producto.descripcion %></td>
         <td><%= producto.precio %></td>
         <td><%= producto.url %></td>
-        <td><%= producto.genero_id %></td>
+        <td><%= producto.genero.nombre %></td>
         <td><%= link_to 'Show', producto %></td>
         <td><%= link_to 'Edit', edit_producto_path(producto) %></td>
         <td><%= link_to 'Destroy', producto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -34,8 +34,8 @@
   </tbody>
 </table>
 
-<div class="row ">
-  <div class="col-md-8 offset-2 ">
+<div class="row">
+  <div class="col-md-8 offset-2">
     <div class="container">
     <h1 class="text-center">Productos</h1>
       <div class="row">
@@ -44,12 +44,21 @@
             <div class="card">
               <%= image_tag producto.url , class:'card-img-top foto_manga' %>
               <div class="card-block">
-                <h5 class="card-title"><%= producto.titulo %></h5>
+                <h5 class="card-title "><%= producto.titulo %></h5>
                 <div class="card-text"> 
                   <div><%= producto.descripcion %></div>
-                  <div>Genero <%= producto.genero_id %></div>
-                  <div class="badge text-white bg-success">Stock <%= producto.total_stock %></div>                  
-                  <div >Precio $<%= producto.precio %></div>
+                  <div>Genero <%= producto.genero.nombre %></div>
+                  <br>                 
+                  <div>                        
+                      Precio $<%= producto.precio %>
+                      <span class="badge badge-info ml-2">Stock <%= producto.total_stock %></span> 
+                  </div>
+                  <br>
+                  <div>
+                      <%= link_to 'Show', producto, class: 'text-primary col-md-2' %> 
+                      <%= link_to 'Edit', edit_producto_path(producto), class: 'text-primary col-md-2' %>
+                      <%= link_to 'Destroy', producto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-primary col-md-2' %>
+                  </div>
                 </div>                
               </div>
             </div>
