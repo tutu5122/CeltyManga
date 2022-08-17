@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_12_225523) do
+ActiveRecord::Schema.define(version: 2022_08_16_233619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,29 @@ ActiveRecord::Schema.define(version: 2022_08_12_225523) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "detalle_compras", force: :cascade do |t|
+    t.integer "cantidad"
+    t.bigint "orden_compra_id", null: false
+    t.bigint "producto_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["orden_compra_id"], name: "index_detalle_compras_on_orden_compra_id"
+    t.index ["producto_id"], name: "index_detalle_compras_on_producto_id"
+  end
+
   create_table "generos", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orden_compras", force: :cascade do |t|
+    t.integer "total"
+    t.string "direccion_despacho"
+    t.bigint "cliente_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cliente_id"], name: "index_orden_compras_on_cliente_id"
   end
 
   create_table "productos", force: :cascade do |t|
@@ -43,5 +62,8 @@ ActiveRecord::Schema.define(version: 2022_08_12_225523) do
     t.index ["genero_id"], name: "index_productos_on_genero_id"
   end
 
+  add_foreign_key "detalle_compras", "orden_compras"
+  add_foreign_key "detalle_compras", "productos"
+  add_foreign_key "orden_compras", "clientes"
   add_foreign_key "productos", "generos"
 end
