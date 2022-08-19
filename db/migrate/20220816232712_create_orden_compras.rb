@@ -1,7 +1,7 @@
 class CreateOrdenCompras < ActiveRecord::Migration[6.1]
   def change
     create_table :orden_compras do |t|
-      t.integer :total
+      t.integer :total, default: 0
       t.string :direccion_despacho
       t.references :cliente, null: false, foreign_key: true
 

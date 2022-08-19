@@ -1,12 +1,14 @@
 class ProductosController < ApplicationController
-  before_action :set_producto, only: %i[ show edit update destroy ]
+  before_action :set_producto, only: %i[ show edit update destroy]
   before_action :set_generos, only: %i[ new create edit ]
+  before_action :agregar_carro, only: %i[ new create ]
+
   
   # GET /productos or /productos.json
   def index
     #@productos = Producto.all
     @productos = Producto.page(params[:page])
-
+  
   end
 
   # GET /productos/1 or /productos/1.json
@@ -60,6 +62,22 @@ class ProductosController < ApplicationController
     end
   end
 
+  
+  def agregar_carro
+    @productos_en_carro = []
+    @titleProduct = params.require(:productos).permit(:title) 
+    @titlePrice   = params.require(:productos).permit(:price)  
+    @titleCount   = params.require(:productos).permit(:count)
+    @productos_en_carro.push(@titleProduct )
+
+    respond_to do |format|
+      format.html { redirect_to productos_url, notice: "Se agrego al pinche carrito." }
+      format.json { head :no_content }
+    end
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_producto
@@ -72,6 +90,7 @@ class ProductosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def producto_params
-      params.require(:producto).permit(:titulo, :total_stock, :descripcion, :precio, :url, :genero_id)
+      params.require(:producto).permit(:titulo, :total_stock, :descripcion, :precio, :url, :genero_id, :title)
     end
+
 end

@@ -34,6 +34,7 @@
   </tbody>
 </table>
 
+
 <div class="row">
   <div class="col-md-8 offset-2">
     <div class="container">
@@ -59,6 +60,13 @@
                       <%= link_to 'Edit', edit_producto_path(producto), class: 'text-primary col-md-2' %>
                       <%= link_to 'Destroy', producto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-primary col-md-2' %>
                   </div>
+                  <%= form_with scope: "productos", url: agregar_carro_path, method: :put do |form| %> 
+                    <%= form.text_field :title , value:  producto.titulo %>
+                    <%= form.text_field :price , value:  producto.precio %>
+                    <%= form.text_field :count , value:  1 %>
+                    <%= form.submit "Agregar" %>  
+                  <% end %>
+                  <br>
                 </div>                
               </div>
             </div>
@@ -69,6 +77,8 @@
   </div>
 </div>
 
+
+<p>Carrito: <%= @productos_en_carro  %></p>
 <br>
 <%= link_to_prev_page  @productos, 'Página Anterior', class: 'text-info' %>
 <%= link_to_next_page  @productos, 'Siguiente página', class: 'text-info' %>

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_233619) do
   end
 
   create_table "detalle_compras", force: :cascade do |t|
-    t.integer "cantidad"
+    t.integer "cantidad", default: 0
     t.bigint "orden_compra_id", null: false
     t.bigint "producto_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_233619) do
   end
 
   create_table "orden_compras", force: :cascade do |t|
-    t.integer "total"
+    t.integer "total", default: 0
     t.string "direccion_despacho"
     t.bigint "cliente_id", null: false
     t.datetime "created_at", precision: 6, null: false
