@@ -19,6 +19,3 @@ end
 
 cliente = Cliente.create(rut: '11111111-1', nombre: 'Maria', apellido: 'Perez' , email: 'hola@hola.cl' , direccion: 'Avenida La Florida')
 
-orden = OrdenCompra.create(total: 3000, direccion_despacho: 'puente alto', cliente_id: 1)
-
-detalle = DetalleCompra.create(cantidad: 1, orden_compra_id: 1, producto_id: 3)
