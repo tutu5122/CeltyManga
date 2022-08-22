@@ -4,9 +4,8 @@ class HomeController < ApplicationController
       
   end
   
-  def search   
-    @productos = Producto.where("titulo LIKE ?", "%#{params[:q]}%")    
-  end
-
+  # def search   
+  #   @productos = Producto.where("titulo LIKE ?", "%#{params[:q]}%")    
+  # end
 
 end

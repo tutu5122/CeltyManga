@@ -7,7 +7,16 @@ class ProductosController < ApplicationController
   # GET /productos or /productos.json
   def index
     #@productos = Producto.all
-    @productos = Producto.page(params[:page])
+    @productos = Producto.page(params[:page]) 
+  end
+
+  def search   
+    @productos = Producto.where("titulo LIKE ?", "%#{params[:q]}%")  
+    respond_to do |format|
+      format.html { redirect_to productos_url }
+      format.json { head :no_content }
+    end 
+    # redirect_to productos_search_path
   end
 
   # GET /productos/1 or /productos/1.json
@@ -90,7 +99,6 @@ class ProductosController < ApplicationController
     $productos_en_carro = []
     redirect_to carrito_show_url
   end
-
 
 
   private
