@@ -19,3 +19,5 @@ end
 
 cliente = Cliente.create(rut: '11111111-1', nombre: 'Maria', apellido: 'Perez' , email: 'hola@hola.cl' , direccion: 'Avenida La Florida')
 
+AdminUser.create!(email: 'admin@example.com', password: '123123', password_confirmation: '123123')
+#AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

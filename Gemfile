@@ -62,3 +62,5 @@ gem 'net-pop', require: false
 gem "kaminari", "~> 1.2"
 
 gem "devise", "~> 4.8"
+
+gem "activeadmin", "~> 2.13"
