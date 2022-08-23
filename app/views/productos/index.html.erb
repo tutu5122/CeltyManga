@@ -87,9 +87,13 @@
   <% end %>
   <tr>
     <th colspan=4>
+    <% if current_user %>
       <%= form_with scope: "productos", url: mandar_carro_path, method: :put do |form| %> 
       <%= form.submit "Comprar", class: 'btn btn-sm btn-outline-info'  %>  
       <% end %>
+       <% else %>
+          <li><%= link_to 'Iniciar session', new_user_session_path %></li>
+    <% end %>
     </th>
   </tr>
 </tbody>

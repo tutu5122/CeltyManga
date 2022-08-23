@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #8ddbe8;" >
-  <a class="navbar-brand " href="#">STORE</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,6 +18,15 @@
     <form class="form-inline my-2 my-lg-0" action="/search">
       <input class="form-control mr-sm-2"  name="q" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
-    </form>  
+    </form> 
+    <div class="ml-auto">
+      <ul class="navbar-nav">
+        <% if current_user %>
+          <li><%= link_to 'Cerrar session', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to 'Iniciar session', new_user_session_path %></li>
+        <% end  %>
+      </ul>
+    </div> 
   </div>
 </nav>

@@ -1,4 +1,5 @@
 class ProductosController < ApplicationController
+  before_action :authenticate_user!, except: %i[index]
   before_action :set_producto, only: %i[ show edit update destroy]
   before_action :set_generos, only: %i[ new create edit ]
 

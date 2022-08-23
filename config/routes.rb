@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users,  {sessions: 'users/sessions'}
   put "/productos/agregar_carro", to: "productos#agregar_carro", as: 'agregar_carro' 
   put "/productos/mandar_carro", to: "productos#mandar_carro", as: 'mandar_carro' 
   get 'carrito/show'

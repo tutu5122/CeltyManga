@@ -60,3 +60,5 @@ gem 'net-imap', require: false
 gem 'net-pop', require: false
 
 gem "kaminari", "~> 1.2"
+
+gem "devise", "~> 4.8"
