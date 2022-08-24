@@ -39,11 +39,13 @@
                     <% end %>
                   </div>
                    <br>
-                  <div style='font-size:11px'>
-                      <%= link_to 'Detalle', producto, class: 'text-primary col-sm' %> 
-                      <%= link_to 'Editar', edit_producto_path(producto), class: 'text-primary col-sm' %>
-                      <%= link_to 'Eliminar', producto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-primary col-sm' %>
-                  </div>
+
+                    <div style='font-size:11px'>
+                        <%= link_to 'Detalle', producto, class: 'text-primary col-sm' %> 
+                        <%= link_to 'Editar', edit_producto_path(producto), class: 'text-primary col-sm' %>
+                        <%= link_to 'Eliminar', producto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-primary col-sm' %>
+                    </div>                   
+                 
                   <br>
                 </div>                
               </div>
