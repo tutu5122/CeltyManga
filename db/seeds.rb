@@ -13,7 +13,7 @@ Genero.create(nombre: 'accion')
 
 
 40.times do
-    producto = Producto.create(titulo: 'Hola', total_stock: (1..25).to_a.sample, descripcion: 'Hola descripcion', precio: (1000..8000).to_a.sample ,url: (1..5).to_a.sample.to_s + '.jpg' , genero_id: (1..4).to_a.sample )
+    producto = Producto.create(titulo: 'Manga n' + (1..25).to_a.sample.to_s, total_stock: (1..25).to_a.sample, descripcion: 'Hola descripcion', precio: (1000..8000).to_a.sample ,url: (1..5).to_a.sample.to_s + '.jpg' , genero_id: (1..4).to_a.sample )
 end
 
 
