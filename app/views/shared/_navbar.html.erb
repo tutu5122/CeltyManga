@@ -15,18 +15,20 @@
         <%= link_to 'Carrito', carrito_show_path, class: 'nav-link' %>
       </li>
     </ul>  
+    
+    <div class="ml-auto">
     <form class="form-inline my-2 my-lg-0" action="/search">
       <input class="form-control mr-sm-2"  name="q" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
-    </form> 
-    <div class="ml-auto">
-      <ul class="navbar-nav">
+       <ul class="navbar-nav" style='margin-left:30px'>
         <% if current_user %>
           <li><%= link_to 'Cerrar sesion', destroy_user_session_path, method: :delete %></li>
           <% else %>
           <li><%= link_to 'Iniciar sesion', new_user_session_path %></li>
         <% end  %>
       </ul>
+    </form> 
+     
     </div> 
   </div>
 </nav>

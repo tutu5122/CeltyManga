@@ -17,7 +17,9 @@ Genero.create(nombre: 'accion')
 end
 
 
-cliente = Cliente.create(rut: '11111111-1', nombre: 'Maria', apellido: 'Perez' , email: 'hola@hola.cl' , direccion: 'Avenida La Florida')
+cliente = Cliente.create(rut: '11111111-1', nombre: 'Maria', apellido: 'Perez' , email: 'nada@nada.cl' , direccion: 'Avenida La Florida')
+
+user = User.create(email: 'nada@nada.cl', password: '123123', password_confirmation: '123123')
 
 AdminUser.create!(email: 'admin@example.com', password: '123123', password_confirmation: '123123')
 #AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

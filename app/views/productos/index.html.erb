@@ -35,7 +35,7 @@
                       <%= form.hidden_field :id , value:  producto.id %>
                       <%= form.hidden_field :precio , value:  producto.precio %>
                       <%= form.hidden_field :titulo , value:  producto.titulo %>
-                      <p>Cantidad :</p><%= form.text_field :cantidad , value:  1 %>
+                      <p>Cantidad :</p><%= form.text_field :cantidad , value:  1 , class:'form-control col-md-2'%>
                       <br><br>
                       <%= form.submit "Agregar" , class:'btn btn-sm btn-outline-info' %>  
                     <% end %>

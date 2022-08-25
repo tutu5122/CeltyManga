@@ -79,14 +79,16 @@ class ProductosController < ApplicationController
 
   def mandar_carro
 
-    @infoOrden= params.require(:productos).permit(:despacho, :email)
+    @infoOrden = params.require(:productos).permit(:despacho, :email)
 
     @total = 0
     $productos_en_carro.each do |carro|
       @total = @total + (carro[:cantidad].to_i * carro[:precio].to_i)
     end
+
+    @cliente = Cliente.find{|c| c[:email] == @infoOrden[:email]}
    
-    orden = OrdenCompra.create(total: @total, direccion_despacho: @infoOrden[:despacho], cliente_id: 1 )
+    orden = OrdenCompra.create(total: @total, direccion_despacho: @infoOrden[:despacho], cliente_id: @cliente[:id] )
 
    
     $productos_en_carro.each do |carro|
