@@ -15,8 +15,10 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div style='margin-top:50px'>
+      <h3 class="notice" style='color:green'><%= notice %></h3>
+      <h3 class="alert"  style='color:red'><%= alert %></h3>
+    </div>
     <%= yield %>
   </body>
 </html>

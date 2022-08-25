@@ -1,6 +1,12 @@
 <h1 class="text-center">Resultado</h1>
 
 <div class="row">
+  <div class="col-md-8 offset-2">
+    <div class="container">
+      <h1 class="text-center">Productos</h1>
+      <%= link_to 'Nuevo Producto', new_producto_path, class: 'btn btn-sm btn-outline-info' %>
+      <br> <br>
+      <div class="row">
         <% @productos.each do |producto| %>
           <div class="col-md-4 col-sm-6 mb-4">
             <div class="card" style='padding: 15px;'>
@@ -28,13 +34,21 @@
                       <%= form.hidden_field :id , value:  producto.id %>
                       <%= form.hidden_field :precio , value:  producto.precio %>
                       <%= form.hidden_field :titulo , value:  producto.titulo %>
+                      <p>Cantidad :</p><%= form.text_field :cantidad , value:  1 , class:'form-control col-md-2'%>
+                      <br><br>
                       <%= form.submit "Agregar" , class:'btn btn-sm btn-outline-info' %>  
                     <% end %>
                   </div>
-                   <br>                
+                   <br>
+                    <div style='font-size:11px'>
+                        <%= link_to 'Detalle', producto, class: 'text-primary col-sm' %> 
+                        <%= link_to 'Editar', edit_producto_path(producto), class: 'text-primary col-sm' %>
+                        <%= link_to 'Eliminar', producto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-primary col-sm' %>
+                    </div>                                  
                   <br>
                 </div>                
               </div>
             </div>
           </div>
         <% end %>
+      </div>

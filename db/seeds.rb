@@ -17,9 +17,11 @@ Genero.create(nombre: 'accion')
 end
 
 
-cliente = Cliente.create(rut: '11111111-1', nombre: 'Maria', apellido: 'Perez' , email: 'nada@nada.cl' , direccion: 'Avenida La Florida')
-
+cliente = Cliente.create(rut: '11111111-1', nombre: 'Maria', apellido: 'Perez' , email: 'nada@nada.cl' , direccion: 'Calle 445 La Florida, Santiago', superuser: false)
 user = User.create(email: 'nada@nada.cl', password: '123123', password_confirmation: '123123')
 
+cliente = Cliente.create(rut: '22222222-2', nombre: 'Super Usuario', apellido: 'Super' , email: 'super@super.cl' , direccion: 'Calle 123 Puente Alto, Santiago', superuser: true)
+user = User.create(email: 'super@super.cl', password: '123123', password_confirmation: '123123')
+
+
 AdminUser.create!(email: 'admin@example.com', password: '123123', password_confirmation: '123123')
-#AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2022_08_23_220712) do
     t.string "apellido"
     t.string "email"
     t.string "direccion"
+    t.boolean "superuser"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

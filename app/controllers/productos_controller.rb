@@ -3,7 +3,6 @@ class ProductosController < ApplicationController
   before_action :set_generos, only: %i[ new create edit ]
 
   $productos_en_carro = []
-  
   # GET /productos or /productos.json
   def index
     #@productos = Producto.all
@@ -12,7 +11,6 @@ class ProductosController < ApplicationController
 
   def search   
     @productos = Producto.where("titulo LIKE ?", "%#{params[:q]}%")  
-
   end
 
   # GET /productos/1 or /productos/1.json
@@ -61,7 +59,7 @@ class ProductosController < ApplicationController
     @producto.destroy
 
     respond_to do |format|
-      format.html { redirect_to productos_url, notice: "Producto fue eliminado." }
+      format.html { redirect_to productos_url, alert: "Producto fue eliminado." }
       format.json { head :no_content }
     end
   end
@@ -79,24 +77,31 @@ class ProductosController < ApplicationController
 
   def mandar_carro
 
-    @infoOrden = params.require(:productos).permit(:despacho, :email)
+    if $productos_en_carro.length() == 0
+      respond_to do |format|
+        format.html { redirect_to productos_url, alert: "Debe tener al menos un producto en el carro." }
+        format.json { head :no_content }
+      end
+    else
+      @infoOrden = params.require(:productos).permit(:despacho, :email)
 
-    @total = 0
-    $productos_en_carro.each do |carro|
-      @total = @total + (carro[:cantidad].to_i * carro[:precio].to_i)
+      @total = 0
+      $productos_en_carro.each do |carro|
+        @total = @total + (carro[:cantidad].to_i * carro[:precio].to_i)
+      end
+  
+      @cliente = Cliente.find{|c| c[:email] == @infoOrden[:email]}
+     
+      orden = OrdenCompra.create(total: @total, direccion_despacho: @infoOrden[:despacho], cliente_id: @cliente[:id] )
+  
+     
+      $productos_en_carro.each do |carro|
+        detalle = DetalleCompra.create(cantidad: carro[:cantidad] , orden_compra_id: orden.id, producto_id: carro[:id])
+      end
+      
+      $productos_en_carro = []
+      redirect_to carrito_show_url
     end
-
-    @cliente = Cliente.find{|c| c[:email] == @infoOrden[:email]}
-   
-    orden = OrdenCompra.create(total: @total, direccion_despacho: @infoOrden[:despacho], cliente_id: @cliente[:id] )
-
-   
-    $productos_en_carro.each do |carro|
-      detalle = DetalleCompra.create(cantidad: carro[:cantidad] , orden_compra_id: orden.id, producto_id: carro[:id])
-    end
-    
-    $productos_en_carro = []
-    redirect_to carrito_show_url
   end
 
   def  eliminar_del_carro
@@ -106,7 +111,7 @@ class ProductosController < ApplicationController
     $productos_en_carro.delete(@productoBorrar)
 
     respond_to do |format|
-      format.html { redirect_to productos_url, notice: "Se elimino elemento del carrito." }
+      format.html { redirect_to productos_url, alert: "Se elimino elemento del carrito." }
       format.json { head :no_content }
     end
 
