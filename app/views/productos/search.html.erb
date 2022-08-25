@@ -1,3 +1,40 @@
 <h1 class="text-center">Resultado</h1>
 
-<%= render @productos %>
+<div class="row">
+        <% @productos.each do |producto| %>
+          <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card" style='padding: 15px;'>
+              <%= image_tag producto.url , class:'card-img-top foto_manga' %>
+              <div class="card-block">
+                <div>
+                  <br>   
+                  <h5 class="card-title "><%= producto.titulo %></h5>
+                </div>
+                <div class="card-text"> 
+                  <div>
+                    <div> <b>Descripcion:</b> <%= producto.descripcion %></div>
+                    <div> <b>Genero:</b> <%= producto.genero.nombre %></div>
+                   
+                  </div>
+                  <br>                 
+                  <div  style='margin-left:-7px'>                        
+                      <span class="badge badge-info ml-2">Precio $<%= producto.precio %></span>
+                      <span class="badge badge-info ml-2">Stock <%= producto.total_stock %></span> 
+                  </div>
+                 
+                  <br>
+                  <div>
+                    <%= form_with scope: "productos", url: agregar_carro_path, method: :put do |form| %> 
+                      <%= form.hidden_field :id , value:  producto.id %>
+                      <%= form.hidden_field :precio , value:  producto.precio %>
+                      <%= form.hidden_field :titulo , value:  producto.titulo %>
+                      <%= form.submit "Agregar" , class:'btn btn-sm btn-outline-info' %>  
+                    <% end %>
+                  </div>
+                   <br>                
+                  <br>
+                </div>                
+              </div>
+            </div>
+          </div>
+        <% end %>

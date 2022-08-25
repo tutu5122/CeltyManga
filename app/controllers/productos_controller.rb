@@ -1,6 +1,5 @@
 class ProductosController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
-  before_action :set_producto, only: %i[ show edit update destroy]
+  before_action :set_producto, only: %i[ show edit update destroy ]
   before_action :set_generos, only: %i[ new create edit ]
 
   $productos_en_carro = []
@@ -13,11 +12,7 @@ class ProductosController < ApplicationController
 
   def search   
     @productos = Producto.where("titulo LIKE ?", "%#{params[:q]}%")  
-    respond_to do |format|
-      format.html { redirect_to productos_url }
-      format.json { head :no_content }
-    end 
-    # redirect_to productos_search_path
+
   end
 
   # GET /productos/1 or /productos/1.json
@@ -74,7 +69,7 @@ class ProductosController < ApplicationController
   
   def agregar_carro
    
-    @producto = params.require(:productos).permit(:id, :precio, :titulo) 
+    @producto = params.require(:productos).permit(:id, :precio, :titulo, :cantidad) 
     $productos_en_carro.push( @producto )
     respond_to do |format|
       format.html { redirect_to productos_url, notice: "Se agrego al carrito." }
@@ -84,23 +79,36 @@ class ProductosController < ApplicationController
 
   def mandar_carro
 
+    @infoOrden= params.require(:productos).permit(:despacho, :email)
+
     @total = 0
     $productos_en_carro.each do |carro|
-      @total = @total + carro[:precio].to_i
+      @total = @total + (carro[:cantidad].to_i * carro[:precio].to_i)
     end
    
-
-    orden = OrdenCompra.create(total: @total, direccion_despacho: 'puente alto', cliente_id: 1)
+    orden = OrdenCompra.create(total: @total, direccion_despacho: @infoOrden[:despacho], cliente_id: 1 )
 
    
     $productos_en_carro.each do |carro|
-      detalle = DetalleCompra.create(cantidad: 1, orden_compra_id: orden.id, producto_id: carro[:id])
+      detalle = DetalleCompra.create(cantidad: carro[:cantidad] , orden_compra_id: orden.id, producto_id: carro[:id])
     end
     
     $productos_en_carro = []
     redirect_to carrito_show_url
   end
 
+  def  eliminar_del_carro
+    @id = params.require(:productos).permit(:id) 
+
+    @productoBorrar = $productos_en_carro.find{|e| e[:id] == @id[:id] }
+    $productos_en_carro.delete(@productoBorrar)
+
+    respond_to do |format|
+      format.html { redirect_to productos_url, notice: "Se elimino elemento del carrito." }
+      format.json { head :no_content }
+    end
+
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -114,7 +122,7 @@ class ProductosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def producto_params
-      params.require(:producto).permit(:titulo, :total_stock, :descripcion, :precio, :url, :genero_id, :title)
+      params.require(:producto).permit(:titulo, :total_stock, :descripcion, :precio, :url, :genero_id)
     end
 
 end

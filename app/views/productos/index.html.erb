@@ -35,6 +35,8 @@
                       <%= form.hidden_field :id , value:  producto.id %>
                       <%= form.hidden_field :precio , value:  producto.precio %>
                       <%= form.hidden_field :titulo , value:  producto.titulo %>
+                      <p>Cantidad :</p><%= form.text_field :cantidad , value:  1 %>
+                      <br><br>
                       <%= form.submit "Agregar" , class:'btn btn-sm btn-outline-info' %>  
                     <% end %>
                   </div>
@@ -69,13 +71,14 @@
 <table class='table table-bordered'>
 <thead>
   <tr>
-    <th colspan=4><h3>Carrito de Compras</h3></th>
+    <th colspan=5><h3>Carrito de Compras</h3></th>
   </tr>
   <tr>
     <th>Id</th>
     <th>Titulo</th>
     <th>Precio</th>
     <th>Cantidad</th>
+    <th></th>
   </tr>
 </thead>
 <tbody>
@@ -84,14 +87,23 @@
       <td><%= carro[:id] %></td>
       <td><%= carro[:titulo] %></td>
       <td><%= carro[:precio] %></td>       
-      <td>1</td>                   
+      <td><%= carro[:cantidad] %></td>  
+      <td>
+      <%= form_with scope: "productos", url: eliminar_del_carro_path, method: :put do |form| %> 
+          <%= form.hidden_field :id , value:  carro[:id] %>
+          <%= form.submit "Eliminar" , class:'btn btn-sm btn-outline-info' %>  
+      <% end %>
+      </td>                
     </tr>
   <% end %>
   <tr>
-    <th colspan=4>
+    <th colspan=5>
     <% if current_user %>
       <%= form_with scope: "productos", url: mandar_carro_path, method: :put do |form| %> 
-      <%= form.submit "Comprar", class: 'btn btn-sm btn-outline-info'  %>  
+        <p>Direccion de Despacho :</p><%= form.text_field :despacho , value:  "Calle 123# Puente Alto, Santiago", class:'form-control' %>
+        <br><br>
+        <%= form.hidden_field :email , value: current_user.email %>
+        <%= form.submit "Comprar", class: 'btn btn-sm btn-outline-info'  %>  
       <% end %>
        <% else %>
           <li><%= link_to 'Iniciar session', new_user_session_path %></li>

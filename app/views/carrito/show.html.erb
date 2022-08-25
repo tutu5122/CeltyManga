@@ -1,5 +1,7 @@
 <% @total=0 %>
-<h1>Carrito de compra</h1>
+<h1>Ordenes de compra</h1>
+<%= link_to 'Seguir comprando', productos_path, class: 'btn btn-sm btn-outline-info' %>
+<br>
 <br>
 <table class='table-bordered col-sm' style='text-align:center'>
   <thead>
@@ -9,6 +11,7 @@
       <th class="table-info">Direccion</th>
       <th class="table-info">Detalle</th>
       <th class="table-info">Total</th>
+      <th class="table-info"></th>
     </tr>
   </thead>
 
@@ -26,9 +29,10 @@
                   <th class="table-info">Productos</th>
                   <th class="table-info">Precio</th>
                   <th class="table-info">Cantidad</th>
+                  <th class="table-info">Total de Linea</th>
                 </tr>
               </thead>
-
+                 
               <tbody>
                 <% @detalle_compras.select { |detalle| detalle.orden_compra_id == ordenes.id  }.each do |detalle| %>
                   <% @total = @total +  detalle.producto.precio.to_i %>
@@ -36,13 +40,15 @@
                     <td><%= detalle.producto.titulo %></td>
                     <td>$ <%= detalle.producto.precio %></td>
                     <td><%= detalle.cantidad %></td>
+                    <td>$ <%= detalle.cantidad * detalle.producto.precio %></td>
                   </tr>
                 <% end %>
+
               </tbody>
-            </table>
-        
+            </table>        
         </td>
         <td>$ <%= ordenes.total %></td>
+            </button></button></td>
       </tr>
     <% end %>
     <tr>

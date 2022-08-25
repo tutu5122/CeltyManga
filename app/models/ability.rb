@@ -6,6 +6,6 @@ class Ability
   def initialize(user)
 
     return unless user.present?
-    can :edit, Producto, user: user
+    can [:edit, :create, :destroy], Producto, user: user
   end
 end
