@@ -10,7 +10,8 @@
     * email: admin@example.com
     * password: 123123
       
-+ Para entrar tenemos 2 usuarios para login:
++ Para entrar a la pag como usuario:
+    * heroku: https://celty.herokuapp.com/
     * email1: nada@nada.cl 
     * password: 123123
     
